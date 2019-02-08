@@ -217,7 +217,6 @@ final class ConfigImpl implements Config {
         // Avoid examining the stack if there are no context-specific settings
         if (validationModes.isEmpty()) return defaultValidationMode;
         CallStackWalker stack = CallStackWalker.forCurrentThread().skipTo(ObjectInputStream.class);
-        CallStackWalker stackdebug = CallStackWalker.forCurrentThread().skipTo(ObjectInputStream.class);
         // Because this method is called from a constructor, there may be a chain of <init> calls
         // near the top of the stack, with one or more entries per class in the hierarchy.
 
