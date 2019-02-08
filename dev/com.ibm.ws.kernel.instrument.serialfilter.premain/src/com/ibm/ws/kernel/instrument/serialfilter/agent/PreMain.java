@@ -40,11 +40,11 @@ import java.util.ResourceBundle;
 public class PreMain {
     /** Note: this property name corresponds with code in some IBM JDKs. It must NEVER be changed. */
     public static void premain(String args, Instrumentation instrumentation) {
-        if (!PreMainUtil.isBeta() && !PreMainUtil.isEnableAgentPropertySet()) {
-            // if it's not beta, do nothing.
-            // this implementation should be changed when this will be in the production code.
-            return;
-        }
+//        if (!PreMainUtil.isBeta() && !PreMainUtil.isEnableAgentPropertySet()) {
+//            // if it's not beta, do nothing.
+//            // this implementation should be changed when this will be in the production code.
+//            return;
+//        }
         ObjectInputStreamTransformer transform = null;
         if (ObjectInputStreamClassInjector.injectionNeeded()) {
             // Install the transformer to modify ObjectInputStream.

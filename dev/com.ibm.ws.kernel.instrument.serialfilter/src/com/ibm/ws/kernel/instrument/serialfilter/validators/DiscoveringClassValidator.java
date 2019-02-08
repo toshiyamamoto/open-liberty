@@ -38,11 +38,11 @@ class DiscoveringClassValidator extends ClassValidator {
         if (cls == null) return null;
         if (cls.isArray()) return cls;
         if (log.isLoggable(FINEST)) log.finest(String.format("Discovering. Class name : %s ClassLoader name : %s", cls.getName(), getLoader(cls)));
-        boolean whitelisted = config.allows(cls, skipOnce, false);
+        boolean whitelisted = config.allows(cls, skipOnce, true);
         if (whitelisted)
             return cls;
-        if (log.isLoggable(FINEST)) log.finest(String.format("The class is not on the whitelist. Class name : %s ClassLoader name : %s", cls.getName(), getLoader(cls)));
-        if (log.isLoggable(INFO)) log.info(MessageUtil.format("SF_INFO_NOT_ON_WHITELIST", cls.getName()));
+//        if (log.isLoggable(FINEST)) log.finest(String.format("The class is not on the whitelist. Class name : %s ClassLoader name : %s", cls.getName(), getLoader(cls)));
+//        log.severe(MessageUtil.format("SF_INFO_NOT_ON_WHITELIST", cls.getName()));
         return cls;
     }
 

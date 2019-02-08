@@ -158,26 +158,36 @@ final class ConfigImpl implements Config {
 
     @Override
     public boolean allows(final Class<?> cls, final Class<?> [] toSkip) {
-        return allows(cls, toSkip, true);
+        return allows(cls, toSkip, false);
     }
     @Override
-    public boolean allows(final Class<?> cls, final Class<?> [] toSkip, boolean enableMessage) {
-        Logger log = null;
-        if (enableMessage) {
-            log = Logger.getLogger(ConfigImpl.class.getName());
-        }
+    public boolean allows(final Class<?> cls, final Class<?> [] toSkip, boolean isDiscovery) {
+        Logger log = Logger.getLogger(ConfigImpl.class.getName());
         // short-circuit if this parent hierarchy has already been checked
         if (cls != toSkip[0]) {
             if (isForbidden(cls)) {
-                if (log != null) log.severe(MessageUtil.format("SF_ERROR_NOT_PERMIT", cls.getName()));
+                if (log.isLoggable(FINEST)) log.finest("Denied : " + cls);
+                if (isDiscovery) {
+                    // todo change from severe to info
+                    log.severe(MessageUtil.format("SF_INFO_NOT_ON_WHITELIST", cls.getName()));
+                } else {
+                    log.severe(MessageUtil.format("SF_ERROR_NOT_PERMIT", cls.getName()));
+                }
                 return false;
             }
             // if child class is externalizable, only check externalizable ancestors
             // if child class is serializable, only check serializable ancestors
             final Class<?> iface = externalizableOrSerializable(cls);
+
             for (Class c = cls.getSuperclass(); c != null && iface.isAssignableFrom(c); c = c.getSuperclass()) {
                 if (isForbidden(c)) {
-                    if (log != null) log.severe(MessageUtil.format("SF_ERROR_NOT_PERMIT_SUPERCLASS", cls.getName(), c.getName()));
+                    if (log.isLoggable(FINEST)) log.finest("Denied : " + cls + " because of super class : " + c);
+                    if (isDiscovery) {
+                        // todo change from severe to info
+                        log.severe(MessageUtil.format("SF_INFO_NOT_ON_WHITELIST", c.getName()));
+                    } else {
+                        log.severe(MessageUtil.format("SF_ERROR_NOT_PERMIT_SUPERCLASS", cls.getName(), c.getName()));
+                    }
                     return false;
                 }
             }
@@ -207,6 +217,7 @@ final class ConfigImpl implements Config {
         // Avoid examining the stack if there are no context-specific settings
         if (validationModes.isEmpty()) return defaultValidationMode;
         CallStackWalker stack = CallStackWalker.forCurrentThread().skipTo(ObjectInputStream.class);
+        CallStackWalker stackdebug = CallStackWalker.forCurrentThread().skipTo(ObjectInputStream.class);
         // Because this method is called from a constructor, there may be a chain of <init> calls
         // near the top of the stack, with one or more entries per class in the hierarchy.
 
@@ -225,6 +236,7 @@ final class ConfigImpl implements Config {
 
         // Loop 3: The remaining frames are all 'caller' frames for the object being constructed
         // NOTE: subsequent frames are more general, so the first match takes precedence.
+        
         for (; stack.size() > 0; stack.pop()) {
             if (log.isLoggable(FINER))
                 log.finer("Searching for validation mode setting for " + stack.topClass().getName() + '#' + stack.topMethod());

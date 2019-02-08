@@ -21,13 +21,11 @@ import java.util.logging.Logger;
 import static java.util.logging.Level.FINEST;
 
 final class ClassValidatorFactory extends ConfigHolder {
-    private final Logger log;
     private final Config config;
 
     ClassValidatorFactory(Config config) {
         super(config);
         this.config = config;
-        log = Logger.getLogger(ClassValidatorFactory.class.getName());
     }
 
     /**
@@ -43,6 +41,7 @@ final class ClassValidatorFactory extends ConfigHolder {
     }
 
     private ClassValidator createValidator(ObjectInputStream caller) {
+        Logger log = Logger.getLogger(ClassValidatorFactory.class.getName());
         if (log.isLoggable(FINEST)) {
             log.finest("Creating validator for " + caller.getClass().getName());
         }
@@ -70,6 +69,5 @@ final class ClassValidatorFactory extends ConfigHolder {
                 throw new IllegalArgumentException("Unexpected mode: " + mode);
         }
     }
-
 }
 

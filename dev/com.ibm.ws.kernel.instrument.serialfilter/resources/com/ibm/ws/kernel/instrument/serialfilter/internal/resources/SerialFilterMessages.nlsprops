@@ -19,7 +19,7 @@
 # Message prefix block: CWWKS8001 - CWWKS8069
 
 # do not translate a word "serialFilter".
-SF_INFO_NOT_ON_WHITELIST=CWWKS8001I: The following class is not on the serialFilter whitelist. {0}
+SF_INFO_NOT_ON_WHITELIST=CWWKS8001E: The following class is not on the serialFilter whitelist. {0}
 SF_INFO_NOT_ON_WHITELIST.explanation=The class is not on the serialFiter whiltelist
 SF_INFO_NOT_ON_WHITELIST.useraction=Make sure that the class is added to the whitelist if it is required.
 
