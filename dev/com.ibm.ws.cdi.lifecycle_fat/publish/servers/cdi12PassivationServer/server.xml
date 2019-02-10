@@ -29,5 +29,9 @@
     
     <javaPermission codebase="${shared.resource.dir}/derby/derby.jar" className="java.security.AllPermission"/>
 
+    <serialFilter class="cdi12.transientpassivationtest.PassivationBean" mode="Enforce" permission="Allow" />
+    <serialFilter class="cdi12.transientpassivationtest.FieldInjectionPointBean" mode="Enforce" permission="Allow" />
+    <serialFilter class="cdi12.transientpassivationtest.MethodInjectionPointBean" mode="Enforce" permission="Allow" />
+    <serialFilter class="cdi12.transientpassivationtest.ConstructorInjectionPointBean" mode="Enforce" permission="Allow" />
     
 </server>
