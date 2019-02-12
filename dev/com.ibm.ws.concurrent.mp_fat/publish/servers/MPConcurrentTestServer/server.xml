@@ -49,4 +49,7 @@
     <javaPermission codebase="${server.config.dir}/apps/MPConcurrentApp.war" className="java.lang.RuntimePermission" name="modifyThread"/>
     <javaPermission codebase="${server.config.dir}/apps/MPConcurrentApp.war" className="java.lang.RuntimePermission" name="setContextClassLoader"/>
     <javaPermission codebase="${server.config.dir}/apps/MPConcurrentApp.war" className="java.util.PropertyPermission" name="java.util.concurrent.ForkJoinPool.*" actions="read"/>
+
+    <serialFilter class="concurrent.mp.fat.web.SerializableContextSnapshot" mode="Enforce" permission="Allow" />
+
 </server>

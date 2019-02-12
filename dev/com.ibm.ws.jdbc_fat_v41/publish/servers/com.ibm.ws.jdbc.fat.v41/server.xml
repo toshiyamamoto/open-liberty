@@ -71,4 +71,7 @@
     <javaPermission codebase="${server.config.dir}/apps/basicfat.war" className="javax.management.MBeanServerPermission" name="createMBeanServer"/>
 
     <variable name="onError" value="FAIL"/>
+    
+    <serialFilter class="jdbc.fat.v41.web.MyUser" mode="Enforce" permission="Allow" />
+    
 </server>

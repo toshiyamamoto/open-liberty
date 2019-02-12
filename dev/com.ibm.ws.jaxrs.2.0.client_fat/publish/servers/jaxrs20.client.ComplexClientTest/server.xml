@@ -11,4 +11,7 @@
   	<javaPermission className="java.net.SocketPermission" name="*" actions="connect,resolve"/>
 	<javaPermission className="java.net.NetPermission" name="allowHttpTrace"/>
 	<javaPermission className="java.lang.RuntimePermission" name="*" actions="accessClassInPackage.sun.net.www.protocol.c"/>
+
+  <serialFilter class="com.ibm.ws.jaxrs20.client.ComplexClientTest.service.MyObject" mode="Enforce" permission="Allow" />
+
 </server>

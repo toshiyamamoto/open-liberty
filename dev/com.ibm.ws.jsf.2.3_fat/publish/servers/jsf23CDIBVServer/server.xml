@@ -19,4 +19,7 @@
     
     <logging traceSpecification="*=info:org.apache.myfaces.*=all:com.ibm.ws.jsf*=all" maxFileSize="20" maxFiles="10" traceFormat="BASIC"/> 
 
+    <serialFilter class="com.ibm.ws.jsf23.fat.classlevel.bval.beans.TestPasswordBeanSerialized" mode="Enforce" permission="Allow" />
+    <serialFilter class="com.ibm.ws.jsf23.fat.classlevel.bval.beans.TestPasswordBeanIllegalAccess" mode="Enforce" permission="Allow" />
+
 </server>

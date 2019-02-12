@@ -38,4 +38,10 @@
   <variable name="onError" value="FAIL"/>
   
   <javaPermission codebase="${shared.resource.dir}/derby/derby.jar" className="java.security.AllPermission"/>
+
+  <serialFilter class="web.DemoTrigger" mode="Enforce" permission="Allow" />
+  <serialFilter class="web.DemoTask" mode="Enforce" permission="Allow" />
+  <serialFilter class="web.DemoTaskException" mode="Enforce" permission="Allow" />
+
+
 </server>

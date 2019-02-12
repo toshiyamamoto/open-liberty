@@ -38,4 +38,6 @@
 
   <application location="pxlocktest.war" />
 
+  <serialFilter class="web.SleeperTask" mode="Enforce" permission="Allow" />
+
 </server>

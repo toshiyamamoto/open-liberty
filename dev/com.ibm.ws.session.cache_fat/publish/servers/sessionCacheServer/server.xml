@@ -62,4 +62,6 @@
     <javaPermission codebase="${server.config.dir}/dropins/sessionCacheApp.war" className="javax.management.MBeanServerPermission" name="createMBeanServer"/>
     <javaPermission codebase="${server.config.dir}/dropins/sessionCacheApp.war" className="javax.management.MBeanPermission" actions="registerMBean,queryNames" name="*"/>
 
+    <serialFilter class="session.cache.web.AppObject" mode="Enforce" permission="Allow" />
+
 </server>
