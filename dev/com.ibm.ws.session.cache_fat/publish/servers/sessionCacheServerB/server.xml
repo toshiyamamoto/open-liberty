@@ -50,4 +50,8 @@
     <!--  Permissions for application to access mbeans -->
     <javaPermission codebase="${server.config.dir}/dropins/sessionCacheApp.war" className="javax.management.MBeanServerPermission" name="createMBeanServer"/>
 
+    <serialFilter class="session.cache.web.AppObject" mode="Enforce" permission="Allow" />
+    <serialFilter class="com.hazelcast.spi.exception.RetryableHazelcastException" mode="Enforce" permission="Allow" />
+    <serialFilter class="com.hazelcast.core.HazelcastException" mode="Enforce" permission="Allow" />
+
 </server>
