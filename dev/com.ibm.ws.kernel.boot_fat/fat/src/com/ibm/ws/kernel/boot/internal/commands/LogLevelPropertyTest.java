@@ -55,6 +55,8 @@ public class LogLevelPropertyTest {
             options.put(option, null);
 
         }
+        // disable serial filter agent message for testing.
+        options.put("-Dcom.ibm.websphere.kernel.instrument.serialfilter.message", "false");
 
         server.setJvmOptions(options);
 

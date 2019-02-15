@@ -71,8 +71,9 @@ public class PreMain {
                 return System.setProperty(PreMainUtil.KEY_SERIALFILTER_AGENT_ACTIVE, "true");
             }
         });
-        System.out.println(MessageFormat.format(ResourceBundle.getBundle("com.ibm.ws.kernel.instrument.serialfilter.agent.internal.resources.SerialFilterAgentMessages").getString("SFA_INFO_AGENT_LOADED"), ""));
-
+        if (PreMainUtil.isMessageEnabled()) {
+            System.out.println(MessageFormat.format(ResourceBundle.getBundle("com.ibm.ws.kernel.instrument.serialfilter.agent.internal.resources.SerialFilterAgentMessages").getString("SFA_INFO_AGENT_LOADED"), ""));
+        }
     }
 
     public static void agentmain(String args, Instrumentation instrumentation) throws Exception {
